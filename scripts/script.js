@@ -1,19 +1,11 @@
-function add(a, b){
-    return Number(a) + Number(b)
+const operationFunctions = {
+    '+': (a, b) => Number(a) + Number(b),
+    '-': (a, b) => Number(a) - Number(b),
+    '*': (a, b) => Number(a) * Number(b),
+    '/': (a, b) => Number(a) / Number(b)
+};
 
-}
-
-function subtract(a, b){
-    return Number(a) - Number(b)
-    
-}
-
-function multiply(a, b){
-    return Number(a) * Number(b)
-    
-}
-
-function divide(a, b){
-    return Number(a) / Number(b)
-    
+function operate(operator, a, b){
+    let fn = operationFunctions[operator]
+    return fn(a, b)
 }
