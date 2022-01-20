@@ -1,23 +1,33 @@
 
 let displayValueCharacterArray = []
 let currentDisplayStringValue = ""
-let firstNum;
-let secondNum; 
-
-
+let firstNum = null
+let secondNum = null
+let lastKnownOperator = null
 const calculatorContainer = document.querySelector('.calculator-container')
 const display = document.querySelector('.display')
 
-const operationFunctions = {
+const mathOperationFunctions = {
     '+': (a, b) => Number(a) + Number(b),
     '-': (a, b) => Number(a) - Number(b),
     '*': (a, b) => Number(a) * Number(b),
-    '/': (a, b) => Number(a) / Number(b)
+    '/': (a, b) => Number(a) / Number(b),
 };
 
+const transformingFunctions = {
+    clear: () => {
+        display.textContent = '0';
+        displayValueCharacterArray.splice(0, displayValueCharacterArray.length);
+        currentDisplayStringValue = "";
+        firstNum = null;
+        secondNum = null;
+        lastKnownOperator = null;
+    }, 
+}
+
 function operate(operator, a, b){
-    let fn = operationFunctions[operator]
-    return fn(a, b)
+    let fn = mathOperationFunctions[operator];
+    return fn(a, b);
 }
 
 function containerClickHandler (e) {
@@ -26,6 +36,8 @@ function containerClickHandler (e) {
     const buttonDataValue = e.target.dataset.value;
     
     if (!isNaN(buttonDataValue)) handleClickedNumber(buttonDataValue);
+    else if (buttonDataValue in mathOperationFunctions) console.log(buttonDataValue);
+    else transformingFunctions[buttonDataValue]()
 
 }
 
@@ -40,12 +52,8 @@ function handleClickedNumber (integerString) {
     currentDisplayStringValue = displayValueCharacterArray.join("");
     display.textContent = currentDisplayStringValue;
 
-
-
-}
-
-// function handleNumberButton (e) {
-
-// }
+};
 
 calculatorContainer.addEventListener('click', containerClickHandler)
+
+
