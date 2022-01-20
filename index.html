@@ -4,40 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/main.css" />
     <script src="scripts/script.js" defer></script>
     <title>Calculator</title>
   </head>
   <body>
     <div class="calculator-container">
-      <div class="display"></div>
+      <div class="display">0</div>
       <div class="row">
-        <button>AC</button>
-        <button>+/-</button>
-        <button>%</button>
-        <button>÷</button>
+        <button data-value="clear">AC</button>
+        <button data-value="negate">+/-</button>
+        <button data-value="percent">%</button>
+        <button data-value="/" class="operator">÷</button>
       </div>
       <div class="row">
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button>x</button>
+        <button data-value="7" class="number">7</button>
+        <button data-value="8" class="number">8</button>
+        <button data-value="9" class="number">9</button>
+        <button data-value="*" class="operator">×</button>
       </div>
       <div class="row">
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>-</button>
+        <button data-value="4" class="number">4</button>
+        <button data-value="5" class="number">5</button>
+        <button data-value="6" class="number">6</button>
+        <button data-value="-" class="operator">−</button>
       </div>
       <div class="row">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>+</button>
+        <button data-value="1" class="number">1</button>
+        <button data-value="2" class="number">2</button>
+        <button data-value="3" class="number">3</button>
+        <button data-value="+" class="operator">+</button>
       </div>
       <div class="row">
-        <button>0</button>
-        <button>.</button>
-        <button>=</button>
+        <button data-value="0" class="number zero">0</button>
+        <button data-value="float" class="number">.</button>
+        <button data-value="evaluate" class="operator">=</button>
       </div>
     </div>
   </body>
