@@ -1,8 +1,8 @@
 
 let displayValueCharacterArray = [];
 let currentDisplayStringValue = "";
-let firstNum = null;
-let secondNum = null;
+let firstOperand = null;
+let secondOperand = null;
 let lastKnownOperator = null;
 const calculatorContainer = document.querySelector('.calculator-container');
 const display = document.querySelector('.display');
@@ -19,8 +19,8 @@ const transformingFunctions = {
         display.textContent = '0';
         displayValueCharacterArray.splice(0, displayValueCharacterArray.length);
         currentDisplayStringValue = "";
-        firstNum = null;
-        secondNum = null;
+        firstOperand = null;
+        secondOperand = null;
         lastKnownOperator = null;
     }, 
     negate: () => {
