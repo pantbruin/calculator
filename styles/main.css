@@ -21,8 +21,8 @@ html {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 35px;
   color: white;
+  min-height: 100px;
 }
 
 .row {

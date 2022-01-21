@@ -16,7 +16,7 @@ const mathOperationFunctions = {
 
 const transformingFunctions = {
     clear: () => {
-        display.textContent = '0';
+        display.textContent = '';
         clearValueCharacterArray();
         currentDisplayStringValue = "";
         firstOperand = null;
@@ -50,6 +50,13 @@ function operate(a, b){
     return operationFunction(a, b);
 }
 
+function divisionByZero() {
+    display.textContent = "Ha-ha..."
+    secondOperand = null
+    lastKnownOperator = null
+    clearOperatorButtonBorders()
+}
+
 function clearOperatorButtonBorders(){
     let operatorButtons = document.querySelectorAll('.operator')
     operatorButtons.forEach((btn) => btn.style.border = '')
@@ -79,8 +86,6 @@ function handleClickedNumber (integerString) {
 
     let currValueLength = displayValueCharacterArray.length
     
-    // If first operand doesn't exist and 0 button was pressed, do nothing
-    if (currValueLength === 0 && !firstOperand && integerString === '0') return;
     // If 0 has already been pressed as the secondOperand, don't keep adding 0s 
     if (displayValueCharacterArray[0] === '0' && integerString === '0') return;
     // If 0 had already been pressed as the secondOperand but now a number greater than 0 has been pressed, remove the 0 and use the number greater than 0 instead
@@ -118,6 +123,8 @@ function handleClickedOperator(pressedOperator) {
         clearOperatorButtonBorders();
         if (pressedOperator.dataset.value !== 'evaluate') pressedOperator.style.border = '2px solid white';
         secondOperand = Number(currentDisplayStringValue);
+
+        if (secondOperand === 0 && lastKnownOperator === '/') return divisionByZero()
         let calculationResult = operate(firstOperand, secondOperand)
 
         clearValueCharacterArray()
