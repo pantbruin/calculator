@@ -25,16 +25,23 @@ const transformingFunctions = {
         clearOperatorButtonBorders();
     }, 
     negate: () => {
-        if (displayValueCharacterArray.length === 0) return
+        if (displayValueCharacterArray.length === 0 || displayValueCharacterArray[0] === '0') return
         if (displayValueCharacterArray[0] !== '-'){
             displayValueCharacterArray.unshift('-');
             updateDisplay()
         } else {
             displayValueCharacterArray.splice(0, 1);
             updateDisplay()
-
         };     
     },
+    percent: () => {
+        if (displayValueCharacterArray.length === 0 || displayValueCharacterArray[0] === '0') return;
+        let currValue = Number(displayValueCharacterArray.join(''));
+        currValue = currValue / 100;
+        displayValueCharacterArray = String(currValue).split('');
+        updateDisplay();
+
+    }
 }
 
 function operate(a, b){
