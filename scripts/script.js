@@ -72,8 +72,12 @@ function handleClickedNumber (integerString) {
 
     let currValueLength = displayValueCharacterArray.length
     
-    // If display is currently empty i.e. 0 and 0 button was pressed, do nothing
-    if (currValueLength === 0 && integerString === '0') return;
+    // If first operand doesn't exist and 0 button was pressed, do nothing
+    if (currValueLength === 0 && !firstOperand && integerString === '0') return;
+    // If 0 has already been pressed as the secondOperand, don't keep adding 0s 
+    if (displayValueCharacterArray[0] === '0' && integerString === '0') return;
+    // If 0 had already been pressed as the secondOperand but now a number greater than 0 has been pressed, remove the 0 and use the number greater than 0 instead
+    if (displayValueCharacterArray[0] === '0' && integerString > 0) displayValueCharacterArray.splice(0, 1)
     // Max 10 characters allowed if number is negative otherwise 9
     if ((displayValueCharacterArray[0] === '-' && currValueLength === 10) || (displayValueCharacterArray[0] !== '-' && currValueLength === 9)) return
 
