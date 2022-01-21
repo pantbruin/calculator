@@ -98,10 +98,14 @@ function handleClickedOperator(pressedOperator) {
         firstOperand = Number(currentDisplayStringValue);
         lastKnownOperator = pressedOperator.dataset.value;
         clearValueCharacterArray();
-    } else if (pressedOperator.dataset.value !== 'evaluate') {
-        
-        clearOperatorButtonBorders();
+        // Last operation was an equal sign, so we have a firstOperand and just need to save the operatorSign that was pushed
+    } else if (firstOperand && !lastKnownOperator){
         pressedOperator.style.border = '2px solid white';
+        lastKnownOperator = pressedOperator.dataset.value;
+        clearValueCharacterArray();
+    } else {
+        clearOperatorButtonBorders();
+        if (pressedOperator.dataset.value !== 'evaluate') pressedOperator.style.border = '2px solid white';
         secondOperand = Number(currentDisplayStringValue);
         let calculationResult = operate(firstOperand, secondOperand)
 
@@ -112,11 +116,7 @@ function handleClickedOperator(pressedOperator) {
 
         firstOperand = calculationResult;
         secondOperand = null;
-        lastKnownOperator = pressedOperator.dataset.value;
-
-
-
-
+        pressedOperator.dataset.value === 'evaluate' ? lastKnownOperator = null : lastKnownOperator = pressedOperator.dataset.value;
 
     }
 }
@@ -157,3 +157,6 @@ calculatorContainer.addEventListener('click', containerClickHandler)
         2. 
 
     */
+
+        // Bugs:
+        // A number + 0 is wrong
