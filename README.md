@@ -15,6 +15,6 @@ This is a web-app clone of the 4-function native calculator application found on
 - User can perform operations on decimals
 
 
-### App Walkthrough GIF
+### App Walkthrough
 
 <img src="http://g.recordit.co/lsLdhKU41R.gif" width=250><br>
