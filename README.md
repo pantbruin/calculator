@@ -11,7 +11,7 @@ This is a web-app clone of the 4-function native calculator application found on
 - User can push a button to negate a number
 
 
-## To Do:
+### To Do:
 - User can perform operations on decimals
 
 
